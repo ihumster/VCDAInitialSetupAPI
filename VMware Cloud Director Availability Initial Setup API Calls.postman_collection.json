@@ -1,0 +1,2078 @@
+{
+	"info": {
+		"_postman_id": "f8db786e-d9ab-4123-8c1f-65419a109aca",
+		"name": "VMware Cloud Director Availability Initial Setup API Calls",
+		"description": "The VMware Cloud Director Availability Initial Setup API Calls.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4285141"
+	},
+	"item": [
+		{
+			"name": "config",
+			"item": [
+				{
+					"name": "replicators",
+					"item": [
+						{
+							"name": "8. Check Replicator root password expiration",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "key",
+											"value": "X-VCAV-Auth",
+											"type": "string"
+										},
+										{
+											"key": "value",
+											"value": "<API Key>",
+											"type": "string"
+										},
+										{
+											"key": "in",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/vnd.vmware.h4-v4.4+json;charset=UTF-8"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"apiThumbprint\": \"SHA-256:D8:9E:67:C8:F8:EB:13:04:B3:F4:73:EB:2C:BA:D9:D9:BD:04:B9:39:B7:8E:62:A3:12:5E:4F:E0:7C:C2:43:52\",\n  \"apiUrl\": \"https://myAppliance.fqdn:<apiPort; 8043 replicator | 8047 tunnel>\",\n  \"rootPassword\": \"mySecretP@ssw0rd\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/config/replicators/root-password-expired",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"config",
+										"replicators",
+										"root-password-expired"
+									]
+								},
+								"description": "For get apiThumbprint use \"Get Certificate\" request"
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: apikey",
+												"key": "X-VCAV-Auth",
+												"value": "<API Key>"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"apiThumbprint\": \"SHA-256:D8:9E:67:C8:F8:EB:13:04:B3:F4:73:EB:2C:BA:D9:D9:BD:04:B9:39:B7:8E:62:A3:12:5E:4F:E0:7C:C2:43:52\",\n  \"apiUrl\": \"https://myAppliance.fqdn:<apiPort; 8043 replicator | 8047 tunnel>\",\n  \"rootPassword\": \"mySecretP@ssw0rd\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/config/replicators/root-password-expired",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"config",
+												"replicators",
+												"root-password-expired"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/vnd.vmware.h4-v4.4+json;charset=UTF-8"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"rootPasswordExpired\": true,\n  \"secondsUntilExpiration\": -1634655930\n}"
+								}
+							]
+						},
+						{
+							"name": "9. Change Root password on Replicator",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "key",
+											"value": "X-VCAV-Auth",
+											"type": "string"
+										},
+										{
+											"key": "value",
+											"value": "<API Key>",
+											"type": "string"
+										},
+										{
+											"key": "in",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"description": "(Required) OVF Deploy Password",
+										"key": "Config-Secret",
+										"value": "<deploy password>"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json;charset=UTF-8"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"apiUrl\": \"https://myAppliance.fqdn:<apiPort; 8043 replicator | 8047 tunnel>\",\n  \"apiThumbprint\": \"SHA-256:D8:9E:67:C8:F8:EB:13:04:B3:F4:73:EB:2C:BA:D9:D9:BD:04:B9:39:B7:8E:62:A3:12:5E:4F:E0:7C:C2:43:52\",\n  \"rootPassword\": \"mySecretP@ssw0rd\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/config/replicators/root-password",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"config",
+										"replicators",
+										"root-password"
+									]
+								},
+								"description": "For get apiThumbprint use \"Get Certificate\" request"
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: apikey",
+												"key": "X-VCAV-Auth",
+												"value": "<API Key>"
+											},
+											{
+												"description": "(Required) OVF Deploy Password",
+												"key": "Config-Secret",
+												"value": "<deploy password>"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"apiUrl\": \"https://myAppliance.fqdn:<apiPort; 8043 replicator | 8047 tunnel>\",\n  \"apiThumbprint\": \"SHA-256:D8:9E:67:C8:F8:EB:13:04:B3:F4:73:EB:2C:BA:D9:D9:BD:04:B9:39:B7:8E:62:A3:12:5E:4F:E0:7C:C2:43:52\",\n  \"rootPassword\": \"mySecretP@ssw0rd\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/config/replicators/root-password",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"config",
+												"replicators",
+												"root-password"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json;charset=UTF-8"
+										}
+									],
+									"cookie": [],
+									"body": "\"\""
+								}
+							]
+						},
+						{
+							"name": "10. Setup Lookup Service on Replicator",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "key",
+											"value": "X-VCAV-Auth",
+											"type": "string"
+										},
+										{
+											"key": "value",
+											"value": "<API Key>",
+											"type": "string"
+										},
+										{
+											"key": "in",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/vnd.vmware.h4-v4.4+json;charset=UTF-8"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"apiThumbprint\": \"SHA-256:2D:FE:A0:BB:4F:48:31:7F:DF:D5:F7:E1:80:FE:53:A4:D2:F2:06:DB:EC:52:04:9E:88:DE:26:78:90:42:84:09\",\n  \"apiUrl\": \"https://myAppliance.fqdn:<apiPort; 8043 replicator | 8047 tunnel>\",\n  \"lsThumbprint\": \"SHA-256:5D:18:B8:D3:B5:B9:51:29:B3:9F:75:7F:84:1D:32:4F:73:0D:9C:08:12:03:F6:8C:96:09:C9:29:1A:42:57:60\",\n  \"lsUrl\": \"https://myVcenter.fqdn:443/lookupservice/sdk\",\n  \"rootPassword\": \"mySecretP@ssw0rd\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/config/replicators/lookup-service",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"config",
+										"replicators",
+										"lookup-service"
+									]
+								},
+								"description": "For get lsThumbprint and apiThumbprint use \"Get Certificate\" request"
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: apikey",
+												"key": "X-VCAV-Auth",
+												"value": "<API Key>"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"apiThumbprint\": \"SHA-256:2D:FE:A0:BB:4F:48:31:7F:DF:D5:F7:E1:80:FE:53:A4:D2:F2:06:DB:EC:52:04:9E:88:DE:26:78:90:42:84:09\",\n  \"apiUrl\": \"https://myAppliance.fqdn:<apiPort; 8043 replicator | 8047 tunnel>\",\n  \"lsThumbprint\": \"SHA-256:5D:18:B8:D3:B5:B9:51:29:B3:9F:75:7F:84:1D:32:4F:73:0D:9C:08:12:03:F6:8C:96:09:C9:29:1A:42:57:60\",\n  \"lsUrl\": \"https://myVcenter.fqdn:443/lookupservice/sdk\",\n  \"rootPassword\": \"mySecretP@ssw0rd\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/config/replicators/lookup-service",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"config",
+												"replicators",
+												"lookup-service"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/vnd.vmware.h4-v4.4+json;charset=UTF-8"
+										}
+									],
+									"cookie": [],
+									"body": "\"\""
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "tunnels",
+					"item": [
+						{
+							"name": "15. Check Replicator root password expiration",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "key",
+											"value": "X-VCAV-Auth",
+											"type": "string"
+										},
+										{
+											"key": "value",
+											"value": "<API Key>",
+											"type": "string"
+										},
+										{
+											"key": "in",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/vnd.vmware.h4-v4.4+json;charset=UTF-8"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"apiThumbprint\": \"SHA-256:D8:9E:67:C8:F8:EB:13:04:B3:F4:73:EB:2C:BA:D9:D9:BD:04:B9:39:B7:8E:62:A3:12:5E:4F:E0:7C:C2:43:52\",\n  \"apiUrl\": \"https://myAppliance.fqdn:<apiPort; 8043 replicator | 8047 tunnel>\",\n  \"rootPassword\": \"mySecretP@ssw0rd\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/config/tunnels/root-password-expired",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"config",
+										"tunnels",
+										"root-password-expired"
+									]
+								},
+								"description": "For get apiThumbprint use \"Get Certificate\" request"
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: apikey",
+												"key": "X-VCAV-Auth",
+												"value": "<API Key>"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"apiThumbprint\": \"SHA-256:D8:9E:67:C8:F8:EB:13:04:B3:F4:73:EB:2C:BA:D9:D9:BD:04:B9:39:B7:8E:62:A3:12:5E:4F:E0:7C:C2:43:52\",\n  \"apiUrl\": \"https://myAppliance.fqdn:<apiPort; 8043 replicator | 8047 tunnel>\",\n  \"rootPassword\": \"mySecretP@ssw0rd\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/config/tunnels/root-password-expired",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"config",
+												"tunnels",
+												"root-password-expired"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/vnd.vmware.h4-v4.4+json;charset=UTF-8"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"rootPasswordExpired\": true,\n  \"secondsUntilExpiration\": -1634655930\n}"
+								}
+							]
+						},
+						{
+							"name": "16. Change Root password on Tunnel",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "key",
+											"value": "X-VCAV-Auth",
+											"type": "string"
+										},
+										{
+											"key": "value",
+											"value": "<API Key>",
+											"type": "string"
+										},
+										{
+											"key": "in",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"description": "(Required) OVF Deploy Password",
+										"key": "Config-Secret",
+										"value": "<deploy password>"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/vnd.vmware.h4-v4.4+json;charset=UTF-8"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"apiUrl\": \"https://myAppliance.fqdn:<apiPort; 8043 replicator | 8047 tunnel>\",\n  \"apiThumbprint\": \"SHA-256:D8:9E:67:C8:F8:EB:13:04:B3:F4:73:EB:2C:BA:D9:D9:BD:04:B9:39:B7:8E:62:A3:12:5E:4F:E0:7C:C2:43:52\",\n  \"rootPassword\": \"mySecretP@ssw0rd\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/config/tunnels/root-password",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"config",
+										"tunnels",
+										"root-password"
+									]
+								},
+								"description": "For get apiThumbprint use \"Get Certificate\" request"
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: apikey",
+												"key": "X-VCAV-Auth",
+												"value": "<API Key>"
+											},
+											{
+												"description": "(Required) OVF Deploy Password",
+												"key": "Config-Secret",
+												"value": "<deploy password>"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"apiUrl\": \"https://myAppliance.fqdn:<apiPort; 8043 replicator | 8047 tunnel>\",\n  \"apiThumbprint\": \"SHA-256:D8:9E:67:C8:F8:EB:13:04:B3:F4:73:EB:2C:BA:D9:D9:BD:04:B9:39:B7:8E:62:A3:12:5E:4F:E0:7C:C2:43:52\",\n  \"rootPassword\": \"mySecretP@ssw0rd\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/config/tunnels/root-password",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"config",
+												"tunnels",
+												"root-password"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/vnd.vmware.h4-v4.4+json;charset=UTF-8"
+										}
+									],
+									"cookie": [],
+									"body": "\"\""
+								}
+							]
+						},
+						{
+							"name": "18. Set Lookup Service for Tunnel",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "key",
+											"value": "X-VCAV-Auth",
+											"type": "string"
+										},
+										{
+											"key": "value",
+											"value": "<API Key>",
+											"type": "string"
+										},
+										{
+											"key": "in",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/vnd.vmware.h4-v4.4+json;charset=UTF-8"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"apiThumbprint\": \"SHA-256:2D:FE:A0:BB:4F:48:31:7F:DF:D5:F7:E1:80:FE:53:A4:D2:F2:06:DB:EC:52:04:9E:88:DE:26:78:90:42:84:09\",\n  \"apiUrl\": \"https://myAppliance.fqdn:<apiPort; 8043 replicator | 8047 tunnel>\",\n  \"lsThumbprint\": \"SHA-256:5D:18:B8:D3:B5:B9:51:29:B3:9F:75:7F:84:1D:32:4F:73:0D:9C:08:12:03:F6:8C:96:09:C9:29:1A:42:57:60\",\n  \"lsUrl\": \"https://myVcenter.fqdn:443/lookupservice/sdk\",\n  \"rootPassword\": \"mySecretP@ssw0rd\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/config/tunnels/lookup-service",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"config",
+										"tunnels",
+										"lookup-service"
+									]
+								},
+								"description": "For get lsThumbprint and apiThumbprint use \"Get Certificate\" request"
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: apikey",
+												"key": "X-VCAV-Auth",
+												"value": "<API Key>"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"apiThumbprint\": \"SHA-256:2D:FE:A0:BB:4F:48:31:7F:DF:D5:F7:E1:80:FE:53:A4:D2:F2:06:DB:EC:52:04:9E:88:DE:26:78:90:42:84:09\",\n  \"apiUrl\": \"https://myAppliance.fqdn:<apiPort; 8043 replicator | 8047 tunnel>\",\n  \"lsThumbprint\": \"SHA-256:5D:18:B8:D3:B5:B9:51:29:B3:9F:75:7F:84:1D:32:4F:73:0D:9C:08:12:03:F6:8C:96:09:C9:29:1A:42:57:60\",\n  \"lsUrl\": \"https://myVcenter.fqdn:443/lookupservice/sdk\",\n  \"rootPassword\": \"mySecretP@ssw0rd\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/config/tunnels/lookup-service",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"config",
+												"tunnels",
+												"lookup-service"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/vnd.vmware.h4-v4.4+json;charset=UTF-8"
+										}
+									],
+									"cookie": [],
+									"body": "\"\""
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "1. Change appliance deploy password",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "X-VCAV-Auth",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "<API Key>",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"description": "(Required) OVF Deploy Password",
+								"key": "Config-Secret",
+								"value": "<deploy password>"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json;charset=UTF-8"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"rootPassword\": \"mySecretP@ssw0rd\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/config/root-password",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"config",
+								"root-password"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "X-VCAV-Auth",
+										"value": "<API Key>"
+									},
+									{
+										"description": "(Required) OVF Deploy Password",
+										"key": "Config-Secret",
+										"value": "<deploy password>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"rootPassword\": \"mySecretP@ssw0rd\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/config/root-password",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"config",
+										"root-password"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8"
+								}
+							],
+							"cookie": [],
+							"body": "\"\""
+						}
+					]
+				},
+				{
+					"name": "3. Set Endpoints",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "X-VCAV-Auth",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "<API Key>",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json;charset=UTF-8"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"mgmtAddress\": null,\n  \"mgmtPort\": 8046,\n  \"mgmtPublicAddress\": null,\n  \"mgmtPublicPort\": null,\n  \"apiAddress\": null,\n  \"apiPort\": 8443,\n  \"apiPublicAddress\": \"<fqdn of your appliance>\",\n  \"apiPublicPort\": null\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/config/endpoints",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"config",
+								"endpoints"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "X-VCAV-Auth",
+										"value": "<API Key>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"mgmtAddress\": null,\n  \"mgmtPort\": 8046,\n  \"mgmtPublicAddress\": null,\n  \"mgmtPublicPort\": null,\n  \"apiAddress\": null,\n  \"apiPort\": 8443,\n  \"apiPublicAddress\": \"<fqdn of your appliance>\",\n  \"apiPublicPort\": null\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/config/endpoints",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"config",
+										"endpoints"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8"
+								}
+							],
+							"cookie": [],
+							"body": "\"\""
+						}
+					]
+				},
+				{
+					"name": "4. Set Site",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "X-VCAV-Auth",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "<API Key>",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json;charset=UTF-8"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"localSite\": \"mySite\",\n  \"localSiteDescription\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/config/site",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"config",
+								"site"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "X-VCAV-Auth",
+										"value": "<API Key>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"localSite\": \"mySite\",\n  \"localSiteDescription\": \"\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/config/site",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"config",
+										"site"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8"
+								}
+							],
+							"cookie": [],
+							"body": "\"\""
+						}
+					]
+				},
+				{
+					"name": "5. Set Data Engine",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "X-VCAV-Auth",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "<API Key>",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/vnd.vmware.h4-v4.4+json;charset=UTF-8"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"hbrsrv\": true,\n  \"h4dm\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/config/data-engine",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"config",
+								"data-engine"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "X-VCAV-Auth",
+										"value": "<API Key>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"hbrsrv\": true,\n  \"h4dm\": false\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/config/data-engine",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"config",
+										"data-engine"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/vnd.vmware.h4-v4.4+json;charset=UTF-8"
+								}
+							],
+							"cookie": [],
+							"body": "\"\""
+						}
+					]
+				},
+				{
+					"name": "Get Certificate",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "X-VCAV-Auth",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "<API Key>",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json;charset=UTF-8"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/config/remote-certificate?url=culpa exercitation laboris",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"config",
+								"remote-certificate"
+							],
+							"query": [
+								{
+									"key": "url",
+									"value": "culpa exercitation laboris",
+									"description": "(Required) "
+								}
+							]
+						},
+						"description": "Use this request for get certificate details (encoded form and thumbprint, for example) for use in another requests, who use this cert in them body"
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "X-VCAV-Auth",
+										"value": "<API Key>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/config/remote-certificate?url=culpa exercitation laboris",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"config",
+										"remote-certificate"
+									],
+									"query": [
+										{
+											"key": "url",
+											"value": "culpa exercitation laboris"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8"
+								}
+							],
+							"cookie": [],
+							"body": "\"\""
+						}
+					]
+				},
+				{
+					"name": "6. Check VCD Connection",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "X-VCAV-Auth",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "<API Key>",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json;charset=UTF-8"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"vcdPassword\": \"mySecretP@ssw0rd\",\n  \"vcdThumbprint\": \"SHA-256:4E:A1:79:69:0D:70:AA:99:07:12:14:55:6B:C0:4E:1E:1D:FC:30:23:E2:8A:AE:A6:E1:16:8F:2B:06:F2:61:81\",\n  \"vcdUrl\": \"https://myVCD.fqdn/api\",\n  \"vcdUsername\": \"vcdadmin@system\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/config/check-vcloud",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"config",
+								"check-vcloud"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "X-VCAV-Auth",
+										"value": "<API Key>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"vcdPassword\": \"mySecretP@ssw0rd\",\n  \"vcdThumbprint\": \"SHA-256:4E:A1:79:69:0D:70:AA:99:07:12:14:55:6B:C0:4E:1E:1D:FC:30:23:E2:8A:AE:A6:E1:16:8F:2B:06:F2:61:81\",\n  \"vcdUrl\": \"https://myVCD.fqdn/api\",\n  \"vcdUsername\": \"vcdadmin@system\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/config/check-vcloud",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"config",
+										"check-vcloud"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8"
+								}
+							],
+							"cookie": [],
+							"body": "\"\""
+						}
+					]
+				},
+				{
+					"name": "7. Save VCD to config",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "X-VCAV-Auth",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "<API Key>",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json;charset=UTF-8"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"vcdPassword\": \"mySecretP@ssw0rd\",\n  \"vcdThumbprint\": \"SHA-256:4E:A1:79:69:0D:70:AA:99:07:12:14:55:6B:C0:4E:1E:1D:FC:30:23:E2:8A:AE:A6:E1:16:8F:2B:06:F2:61:81\",\n  \"vcdUrl\": \"https://myVCD.fqdn/api\",\n  \"vcdUsername\": \"vcdadmin@system\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/config/vcloud",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"config",
+								"vcloud"
+							]
+						},
+						"description": "If 6. Check VCD Connection return 204 Code"
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "X-VCAV-Auth",
+										"value": "<API Key>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"vcdPassword\": \"mySecretP@ssw0rd\",\n  \"vcdThumbprint\": \"SHA-256:4E:A1:79:69:0D:70:AA:99:07:12:14:55:6B:C0:4E:1E:1D:FC:30:23:E2:8A:AE:A6:E1:16:8F:2B:06:F2:61:81\",\n  \"vcdUrl\": \"https://myVCD.fqdn/api\",\n  \"vcdUsername\": \"vcdadmin@system\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/config/vcloud",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"config",
+										"vcloud"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8"
+								}
+							],
+							"cookie": [],
+							"body": "\"\""
+						}
+					]
+				},
+				{
+					"name": "12. Check Lookup Service connect",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "X-VCAV-Auth",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "<API Key>",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json;charset=UTF-8"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"url\": \"https://myVcenter.fqdn:443/lookupservice/sdk\",\n  \"thumbprint\": \"SHA-256:5D:18:B8:D3:B5:B9:51:29:B3:9F:75:7F:84:1D:32:4F:73:0D:9C:08:12:03:F6:8C:96:09:C9:29:1A:42:57:60\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/config/check-lookup-service",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"config",
+								"check-lookup-service"
+							]
+						},
+						"description": "For get vCenter Server Thumbprint use \"Get Certificate\" request"
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "X-VCAV-Auth",
+										"value": "<API Key>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"url\": \"https://myVcenter.fqdn:443/lookupservice/sdk\",\n  \"thumbprint\": \"SHA-256:5D:18:B8:D3:B5:B9:51:29:B3:9F:75:7F:84:1D:32:4F:73:0D:9C:08:12:03:F6:8C:96:09:C9:29:1A:42:57:60\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/config/check-lookup-service",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"config",
+										"check-lookup-service"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8"
+								}
+							],
+							"cookie": [],
+							"body": "\"\""
+						}
+					]
+				},
+				{
+					"name": "13. Save Lookup Service to config",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "X-VCAV-Auth",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "<API Key>",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json;charset=UTF-8"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"url\": \"https://myVcenter.fqdn:443/lookupservice/sdk\",\n  \"thumbprint\": \"SHA-256:5D:18:B8:D3:B5:B9:51:29:B3:9F:75:7F:84:1D:32:4F:73:0D:9C:08:12:03:F6:8C:96:09:C9:29:1A:42:57:60\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/config/lookup-service",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"config",
+								"lookup-service"
+							]
+						},
+						"description": "For get vCenter Server Thumbprint use \"Get Certificate\" request"
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "X-VCAV-Auth",
+										"value": "<API Key>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"url\": \"https://myVcenter.fqdn:443/lookupservice/sdk\",\n  \"thumbprint\": \"SHA-256:5D:18:B8:D3:B5:B9:51:29:B3:9F:75:7F:84:1D:32:4F:73:0D:9C:08:12:03:F6:8C:96:09:C9:29:1A:42:57:60\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/config/lookup-service",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"config",
+										"lookup-service"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8"
+								}
+							],
+							"cookie": [],
+							"body": "\"\""
+						}
+					]
+				},
+				{
+					"name": "14. Set Lookup Service for manager",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "X-VCAV-Auth",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "<API Key>",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/vnd.vmware.h4-v4.4+json;charset=UTF-8"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"url\": \"https://myVcenter.fqdn:443/lookupservice/sdk\",\n  \"thumbprint\": \"SHA-256:5D:18:B8:D3:B5:B9:51:29:B3:9F:75:7F:84:1D:32:4F:73:0D:9C:08:12:03:F6:8C:96:09:C9:29:1A:42:57:60\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/config/manager/lookup-service",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"config",
+								"manager",
+								"lookup-service"
+							]
+						},
+						"description": "For get vCenter Server Thumbprint use \"Get Certificate\" request"
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "X-VCAV-Auth",
+										"value": "<API Key>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"url\": \"https://myVcenter.fqdn:443/lookupservice/sdk\",\n  \"thumbprint\": \"SHA-256:5D:18:B8:D3:B5:B9:51:29:B3:9F:75:7F:84:1D:32:4F:73:0D:9C:08:12:03:F6:8C:96:09:C9:29:1A:42:57:60\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/config/manager/lookup-service",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"config",
+										"manager",
+										"lookup-service"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/vnd.vmware.h4-v4.4+json;charset=UTF-8"
+								}
+							],
+							"cookie": [],
+							"body": "\"\""
+						}
+					]
+				},
+				{
+					"name": "17.  Add Tunnel service",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "X-VCAV-Auth",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "<API Key>",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json;charset=UTF-8"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"certificate\": \"MIIDaDCCAlCgAwIBAgIEUh7w1zANB....iOGsIAHaIf\",\n  \"rootPassword\": \"mySecretP@ssw0rd\",\n  \"url\": \"https://myTunnel.fqdn:8047\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/config/tunnel-service",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"config",
+								"tunnel-service"
+							]
+						},
+						"description": "For get encoded certificate use \"Get Certificate\" request"
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "X-VCAV-Auth",
+										"value": "<API Key>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"certificate\": \"MIIDaDCCAlCgAwIBAgIEUh7w1zANB....iOGsIAHaIf\",\n  \"rootPassword\": \"mySecretP@ssw0rd\",\n  \"url\": \"https://myTunnel.fqdn:8047\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/config/tunnel-service",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"config",
+										"tunnel-service"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8"
+								}
+							],
+							"cookie": [],
+							"body": "\"\""
+						}
+					]
+				},
+				{
+					"name": "19. Enable Telemetry",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "X-VCAV-Auth",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "<API Key>",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/vnd.vmware.h4-v4.4+json;charset=UTF-8"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"enabled\": true,\n  \"environment\": null\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/config/telemetry",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"config",
+								"telemetry"
+							]
+						},
+						"description": "Final Stage of Initial Setup"
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "X-VCAV-Auth",
+										"value": "<API Key>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"enabled\": true,\n  \"environment\": null\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/config/telemetry",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"config",
+										"telemetry"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/vnd.vmware.h4-v4.4+json;charset=UTF-8"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"enabled\": true,\n  \"environment\": \"PRODUCTION\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "2. Push license",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "key",
+							"value": "X-VCAV-Auth",
+							"type": "string"
+						},
+						{
+							"key": "value",
+							"value": "<API Key>",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/vnd.vmware.h4-v4.4+json;charset=UTF-8"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"key\": \"XXXXX-XXXXX-XXXXX-XXXXX-XXXXX\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/license",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"license"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "OK",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: apikey",
+								"key": "X-VCAV-Auth",
+								"value": "<API Key>"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"key\": \"XXXXX-XXXXX-XXXXX-XXXXX-XXXXX\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/license",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"license"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/vnd.vmware.h4-v4.4+json;charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "\"\""
+				}
+			]
+		},
+		{
+			"name": "11. Pair Replicator to Manager",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "key",
+							"value": "X-VCAV-Auth",
+							"type": "string"
+						},
+						{
+							"key": "value",
+							"value": "<API Key>",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/vnd.vmware.h4-v4.4+json;charset=UTF-8"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"apiUrl\": \"https://myReplicatior.fqdn:8043\",\n  \"apiThumbprint\": \"SHA-256:D8:9E:67:C8:F8:EB:13:04:B3:F4:73:EB:2C:BA:D9:D9:BD:04:B9:39:B7:8E:62:A3:12:5E:4F:E0:7C:C2:43:52\",\n  \"rootPassword\": \"mySecretP@ssw0rd\",\n  \"ssoUser\": \"administrator@vsphere.local\",\n  \"ssoPassword\": \"ssoSecretP@ssw0rd\",\n  \"description\": \"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/replicators",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"replicators"
+					]
+				},
+				"description": "For get apiThumbprint use \"Get Certificate\" request"
+			},
+			"response": [
+				{
+					"name": "OK",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: apikey",
+								"key": "X-VCAV-Auth",
+								"value": "<API Key>"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"apiUrl\": \"https://myReplicatior.fqdn:8043\",\n  \"apiThumbprint\": \"SHA-256:D8:9E:67:C8:F8:EB:13:04:B3:F4:73:EB:2C:BA:D9:D9:BD:04:B9:39:B7:8E:62:A3:12:5E:4F:E0:7C:C2:43:52\",\n  \"rootPassword\": \"mySecretP@ssw0rd\",\n  \"ssoUser\": \"administrator@vsphere.local\",\n  \"ssoPassword\": \"ssoSecretP@ssw0rd\",\n  \"description\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/replicators",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"replicators"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/vnd.vmware.h4-v4.4+json;charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "\"\""
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://vcda-manager-appiance.fqdn/",
+			"type": "string"
+		}
+	]
+}
