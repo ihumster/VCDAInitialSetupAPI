@@ -1,0 +1,593 @@
+openapi: 3.0.3
+info:
+  title: VMware Cloud Director Availability Initial Setup API Calls
+  description: The VMware Cloud Director Availability Initial Setup API Calls.
+  version: '4.4'
+servers:
+  - url: https://vcda-manager-appiance.fqdn/
+paths:
+  /config/root-password:
+    post:
+      summary: 1. Change appliance deploy password
+      parameters:
+        - in: header
+          name: Config-Secret
+          schema:
+            type: string
+          description: OVF Deploy Password
+          required: true
+          example: <deploy password>
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/manager-root-password'
+      responses:
+        '204':
+          content:
+            application/json;charset=UTF-8: {}
+          description: OK
+      security:
+        - ApiKeyAuth: []
+  /license:
+    post:
+      summary: 2. Push license
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/license'
+      responses:
+        '200':
+          content:
+            application/vnd.vmware.h4-v4.4+json;charset=UTF-8: {}
+          description: OK
+      security:
+        - ApiKeyAuth: []
+  /config/endpoints:
+    post:
+      summary: 3. Set Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/endpoints'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json;charset=UTF-8: {}
+      security:
+        - ApiKeyAuth: []
+  /config/site:
+    post:
+      summary: 4. Set Site
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/site'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json;charset=UTF-8: {}
+      security:
+        - ApiKeyAuth: []
+  /config/data-engine:
+    post:
+      summary: 5. Set Data Engine
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/data-engine'
+      responses:
+        '204':
+          description: OK
+          content:
+            application/vnd.vmware.h4-v4.4+json;charset=UTF-8: {}
+      security:
+        - ApiKeyAuth: []
+  /config/remote-certificate:
+    get:
+      summary: Get Certificate
+      description: Use this request for get certificate details (encoded form and thumbprint, for example) for use in another requests, who use this cert in them body
+      parameters:
+        - name: url
+          in: query
+          required: true
+          allowEmptyValue: false
+          schema:
+            type: string
+            format: url
+          example:
+            url: https://myendpoint:port/api
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json;charset=UTF-8: {}
+      security:
+        - ApiKeyAuth: []
+  /config/check-vcloud:
+    post:
+      summary: 6. Check VCD Connection
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/check-vcloud'
+      responses:
+        '204':
+          description: OK
+          content:
+            application/json;charset=UTF-8: {}
+      security:
+        - ApiKeyAuth: []
+  /config/vcloud:
+    post:
+      summary: 7. Save VCD to config
+      description: If 6. Check VCD Connection return 204 Code
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/check-vcloud'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json;charset=UTF-8: {}
+      security:
+        - ApiKeyAuth: []
+  /config/replicators/root-password-expired:
+    post:
+      summary: 8. Check Replicator root password expiration
+      description: For get apiThumbprint use "Get Certificate" request
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/appliance-root-password-expired'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/vnd.vmware.h4-v4.4+json;charset=UTF-8:
+              schema:
+                $ref: "#/components/schemas/response-root-password-expired"
+      security:
+        - ApiKeyAuth: []
+  /config/replicators/root-password:
+    post:
+      summary: 9. Change Root password on Replicator
+      description: For get apiThumbprint use "Get Certificate" request
+      parameters:
+        - in: header
+          name: Config-Secret
+          schema:
+            type: string
+          description: OVF Deploy Password
+          required: true
+          example: <deploy password>
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/appliance-root-password'
+      responses:
+        '200':
+          content:
+            application/json;charset=UTF-8: {}
+          description: OK
+      security:
+        - ApiKeyAuth: []
+  /config/replicators/lookup-service:
+    post:
+      summary: 10. Setup Lookup Service on Replicator
+      description: For get lsThumbprint and apiThumbprint use "Get Certificate" request
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/appliance-lookup-service'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/vnd.vmware.h4-v4.4+json;charset=UTF-8: {}
+      security:
+        - ApiKeyAuth: []
+  /replicators:
+    post:
+      summary: 11. Pair Replicator to Manager
+      description: For get apiThumbprint use "Get Certificate" request
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/replicators'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/vnd.vmware.h4-v4.4+json;charset=UTF-8: {}
+      security:
+        - ApiKeyAuth: []
+  /config/check-lookup-service:
+    post:
+      summary: 12. Check Lookup Service connect
+      description: For get vCenter Server Thumbprint use "Get Certificate" request
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/check-lookup-service'
+      responses:
+        '204':
+          content:
+            application/json;charset=UTF-8: {}
+          description: OK
+      security:
+        - ApiKeyAuth: []
+  /config/lookup-service:
+    post:
+      summary: 13. Save Lookup Service to config
+      description: For get vCenter Server Thumbprint use "Get Certificate" request
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/check-lookup-service'
+      responses:
+        '200':
+          content:
+            application/json;charset=UTF-8: {}
+          description: OK
+      security:
+        - ApiKeyAuth: []
+  /config/manager/lookup-service:
+    post:
+      summary: 14. Set Lookup Service for manager
+      description: For get vCenter Server Thumbprint use "Get Certificate" request
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/check-lookup-service'
+      responses:
+        '200':
+          content:
+            application/vnd.vmware.h4-v4.4+json;charset=UTF-8: {}
+          description: OK
+      security:
+        - ApiKeyAuth: []
+  /config/tunnels/root-password-expired:
+    post:
+      summary: 15. Check Replicator root password expiration
+      description: For get apiThumbprint use "Get Certificate" request
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/appliance-root-password-expired'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/vnd.vmware.h4-v4.4+json;charset=UTF-8:
+              schema:
+                $ref: "#/components/schemas/response-root-password-expired"
+      security:
+        - ApiKeyAuth: []
+  /config/tunnels/root-password:
+    post:
+      summary: 16. Change Root password on Tunnel
+      description: For get apiThumbprint use "Get Certificate" request
+      parameters:
+        - in: header
+          name: Config-Secret
+          schema:
+            type: string
+          description: OVF Deploy Password
+          required: true
+          example: <deploy password>
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/appliance-root-password'
+      responses:
+        '200':
+          content:
+            application/vnd.vmware.h4-v4.4+json;charset=UTF-8: {}
+          description: OK
+      security:
+        - ApiKeyAuth: []
+  /config/tunnel-service:
+    post:
+      summary: 17.  Add Tunnel service
+      description: For get encoded certificate use "Get Certificate" request
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/tunnel-service'
+      responses:
+        '200':
+          content:
+            application/json;charset=UTF-8: {}
+          description: OK
+      security:
+        - ApiKeyAuth: []
+  /config/tunnels/lookup-service:
+    post:
+      summary: 18. Set Lookup Service for Tunnel
+      description: For get lsThumbprint and apiThumbprint use "Get Certificate" request
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/appliance-lookup-service'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/vnd.vmware.h4-v4.4+json;charset=UTF-8: {}
+      security:
+        - ApiKeyAuth: []
+  /config/telemetry:
+    post:
+      summary: 19. Enable Telemetry
+      description: Final Stage of Initial Setup
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/telemetry'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/vnd.vmware.h4-v4.4+json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/response-telemetry'
+      security:
+        - ApiKeyAuth: []
+components:
+  schemas:
+    manager-root-password:
+      type: object
+      properties:
+        rootPassword:
+          type: string
+          description: New appliance password
+      example:
+        rootPassword: mySecretP@ssw0rd
+    license:
+      type: object
+      properties:
+        key:
+          type: string
+          description: VCDA License Key
+      example:
+        key: XXXXX-XXXXX-XXXXX-XXXXX-XXXXX
+    endpoints:
+      type: object
+      properties:
+        mgmtAddress:
+          type: string
+          nullable: true
+        mgmtPort:
+          type: integer
+        mgmtPublicAddress:
+          type: string
+          nullable: true
+        mgmtPublicPort:
+          type: integer
+          nullable: true
+        apiAddress:
+          type: string
+          nullable: true
+        apiPort:
+          type: integer
+        apiPublicAddress:
+          type: string
+          description: fqdn of your appliance
+        apiPublicPort:
+          type: integer
+          nullable: true
+      example:
+        mgmtAddress: null
+        mgmtPort: 8046
+        mgmtPublicAddress: null
+        mgmtPublicPort: null
+        apiAddress: null
+        apiPort: 8443
+        apiPublicAddress: <fqdn of your appliance>
+        apiPublicPort: null
+    site:
+      type: object
+      properties:
+        localSite:
+          type: string
+        localSiteDescription:
+          type: string
+      example:
+        localSite: mySite
+        localSiteDescription: ""
+    data-engine:
+      type: object
+      properties:
+        hbrsrv:
+          type: boolean
+          nullable: false
+        h4dm:
+          type: boolean
+          nullable: false
+      example:
+          hbrsrv: true
+          h4dm: false
+    check-vcloud:
+      type: object
+      properties:
+        vcdPassword:
+          type: string
+        vcdThumbprint:
+          type: string
+        vcdUrl:
+          type: string
+        vcdUsername:
+          type: string
+      example:
+        vcdPassword: mySecretP@ssw0rd
+        vcdThumbprint: SHA-256:4E:A1:79:69:0D:70:AA:99:07:12:14:55:6B:C0:4E:1E:1D:FC:30:23:E2:8A:AE:A6:E1:16:8F:2B:06:F2:61:81
+        vcdUrl: https://myVCD.fqdn/api
+        vcdUsername: vcdadmin@system
+    appliance-root-password-expired:
+      type: object
+      properties:
+        apiThumbprint:
+          type: string
+        apiUrl:
+          type: string
+        rootPassword:
+          type: string
+      example:
+        apiThumbprint: SHA-256:D8:9E:67:C8:F8:EB:13:04:B3:F4:73:EB:2C:BA:D9:D9:BD:04:B9:39:B7:8E:62:A3:12:5E:4F:E0:7C:C2:43:52
+        apiUrl: https://myAppliance.fqdn:<apiPort; 8043 replicator | 8047 tunnel>
+        rootPassword: mySecretP@ssw0rd
+    appliance-root-password:
+      type: object
+      properties:
+        apiUrl:
+          type: string
+        apiThumbprint:
+          type: string
+        rootPassword:
+          type: string
+      example:
+        apiUrl: https://myAppliance.fqdn:<apiPort; 8043 replicator | 8047 tunnel>
+        apiThumbprint: SHA-256:D8:9E:67:C8:F8:EB:13:04:B3:F4:73:EB:2C:BA:D9:D9:BD:04:B9:39:B7:8E:62:A3:12:5E:4F:E0:7C:C2:43:52
+        rootPassword: mySecretP@ssw0rd
+    appliance-lookup-service:
+      type: object
+      properties:
+        lsUrl:
+          type: string
+        lsThumbprint:
+          type: string
+        apiUrl:
+          type: string
+        apiThumbprint:
+          type: string
+        rootPassword:
+          type: string
+      example:
+        apiThumbprint: SHA-256:2D:FE:A0:BB:4F:48:31:7F:DF:D5:F7:E1:80:FE:53:A4:D2:F2:06:DB:EC:52:04:9E:88:DE:26:78:90:42:84:09
+        apiUrl: https://myAppliance.fqdn:<apiPort; 8043 replicator | 8047 tunnel>
+        lsThumbprint: SHA-256:5D:18:B8:D3:B5:B9:51:29:B3:9F:75:7F:84:1D:32:4F:73:0D:9C:08:12:03:F6:8C:96:09:C9:29:1A:42:57:60
+        lsUrl: https://myVcenter.fqdn:443/lookupservice/sdk
+        rootPassword: mySecretP@ssw0rd
+    replicators:
+      type: object
+      properties:
+        apiUrl:
+          type: string
+        apiThumbprint:
+          type: string
+        rootPassword:
+          type: string
+        ssoUser:
+          type: string
+        ssoPassword:
+          type: string
+        description:
+          type: string
+      example:
+        apiUrl: https://myReplicatior.fqdn:8043
+        apiThumbprint: SHA-256:D8:9E:67:C8:F8:EB:13:04:B3:F4:73:EB:2C:BA:D9:D9:BD:04:B9:39:B7:8E:62:A3:12:5E:4F:E0:7C:C2:43:52
+        rootPassword: mySecretP@ssw0rd
+        ssoUser: administrator@vsphere.local
+        ssoPassword: ssoSecretP@ssw0rd
+        description: ""
+    check-lookup-service:
+      type: object
+      properties:
+        url:
+          type: string
+        thumbprint:
+          type: string
+      example:
+        url: https://myVcenter.fqdn:443/lookupservice/sdk
+        thumbprint: SHA-256:5D:18:B8:D3:B5:B9:51:29:B3:9F:75:7F:84:1D:32:4F:73:0D:9C:08:12:03:F6:8C:96:09:C9:29:1A:42:57:60
+    tunnel-service:
+      type: object
+      properties:
+        certificate:
+          type: string
+        rootPassword:
+          type: string
+        url:
+          type: string
+      example:
+        certificate: MIIDaDCCAlCgAwIBAgIEUh7w1zANB....iOGsIAHaIf
+        rootPassword: mySecretP@ssw0rd
+        url: https://myTunnel.fqdn:8047
+    telemetry:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+        environment:
+          type: string
+          nullable: true
+      example:
+        enabled: true
+        environment: null
+    response-telemetry:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+        environment:
+          type: string
+          nullable: true
+      example:
+        enabled: true
+        environment: PRODUCTION
+    response-root-password-expired:
+      type: object
+      properties:
+        rootPasswordExpired:
+          type: boolean
+        secondsUntilExpiration:
+          type: integer
+      example:
+        rootPasswordExpired: true
+        secondsUntilExpiration: -1634655930
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-VCAV-Auth
